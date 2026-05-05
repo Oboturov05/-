@@ -1,0 +1,255 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); /* Example font */
+
+/* CSS Variables (Theme) */
+:root {
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --color-primary: #005ab3; /* KHL-like blue */
+  --color-primary-light: #e6f0ff;
+  --color-primary-dark: #00448c;
+
+  --color-secondary: #e8f5e9; /* Light green for success/winners */
+  --color-secondary-dark: #2e7d32;
+
+  --color-danger: #ffebee; /* Light red for delete/losers */
+  --color-danger-dark: #c62828;
+
+  --color-text: #212529;
+  --color-text-secondary: #6c757d;
+  --color-text-muted: #adb5bd;
+  --color-border: #dee2e6;
+  --color-background: #f8f9fa; /* Light overall background */
+  --color-surface: #ffffff; /* Card/element backgrounds */
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 32px;
+
+  --border-radius: 4px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --box-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.2s;
+}
+
+/* Basic Reset & Body Styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  line-height: 1.3;
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+/* Basic Form Elements Styling (can be overridden by modules) */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  background-clip: padding-box;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: border-color var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+  outline: 0;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 90, 179, 0.25);
+}
+
+select {
+  appearance: none; /* For custom arrow */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-md) center;
+  background-size: 16px 12px;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* Basic Button Styling */
+.button {
+  display: inline-block;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-surface);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  transition: color var(--transition-speed) ease-in-out,
+  background-color var(--transition-speed) ease-in-out,
+  border-color var(--transition-speed) ease-in-out,
+  box-shadow var(--transition-speed) ease-in-out;
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+.button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(0, 90, 179, 0.35);
+}
+
+.button:disabled,
+.button.disabled {
+  background-color: var(--color-text-muted);
+  border-color: var(--color-text-muted);
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Button Variants */
+.button-secondary {
+  color: var(--color-text);
+  background-color: var(--color-border);
+  border-color: var(--color-border);
+}
+.button-secondary:hover {
+  background-color: #c8cfd6; /* Slightly darker gray */
+  border-color: #c8cfd6;
+  color: var(--color-text);
+}
+.button-secondary:focus {
+  box-shadow: 0 0 0 3px rgba(200, 200, 200, 0.5);
+}
+
+
+.button-danger {
+  color: var(--color-surface);
+  background-color: var(--color-danger-dark);
+  border-color: var(--color-danger-dark);
+}
+.button-danger:hover {
+  background-color: #a01f1f;
+  border-color: #a01f1f;
+  color: var(--color-surface);
+}
+.button-danger:focus {
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.4);
+}
+
+.button-success {
+  color: var(--color-surface);
+  background-color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+}
+.button-success:hover {
+  background-color: #216324;
+  border-color: #216324;
+  color: var(--color-surface);
+}
+.button-success:focus {
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.4);
+}
+
+
+/* Helper Class */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Material UI Overrides (Example - Adjust as needed) */
+.MuiAppBar-root {
+  background-color: var(--color-primary) !important;
+}
+
+.MuiContainer-root {
+  padding-top: var(--spacing-xl) !important;
+  padding-bottom: var(--spacing-xl) !important;
+}
+
+.MuiTypography-h6 { /* AppBar Title */
+  font-weight: 600 !important;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-surface);
+  padding: var(--spacing-lg) 0;
+  margin-top: var(--spacing-xxl);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
